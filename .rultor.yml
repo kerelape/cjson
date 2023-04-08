@@ -2,10 +2,12 @@ architect:
   - kerelape
 merge:
   script: |
+    snap install --classic --channel=1.20/stable go
     go vet ./pkg/...
     go test ./pkg/... -v
 release:
   script: |
+    snap install --classic --channel=1.20/stable go
     go vet ./pkg/...
     go test ./pkg/... -v
     git commit -am "${tag}"
