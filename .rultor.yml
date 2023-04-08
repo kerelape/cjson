@@ -1,0 +1,12 @@
+architect:
+  - kerelape
+merge:
+  script: |
+    go vet ./pkg/...
+    go test ./pkg/... -v
+release:
+  script: |
+    go vet ./pkg/...
+    go test ./pkg/... -v
+    git commit -am "${tag}"
+    git push -u origin "{$tag}"
