@@ -23,14 +23,19 @@ THE SOFTWARE.
 -->
 # Convenient JSON
 
-Convenient JSON (cjson) is an object-oriented JSON library for Go (golang).
+Convenient JSON (cjson) is a highly inspired by [eo-json](https://github.com/objectionary/eo-json), object-oriented JSON library for Go (golang).
+
+[![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
+
+[![Build](https://github.com/kerelape/cjson/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/kerelape/cjson/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/kerelape/cjson/blob/main/LICENSE.txt)
 
 ## How to use this library
 
 ### Add `cjson` to your Go module
 
-```shell
-go get -u github.com/kerelape/cjson
+```bash
+$ go get -u github.com/kerelape/cjson
 ```
 
 ### Build JSON
@@ -74,3 +79,13 @@ func main() {
     println(document.Root().Object().Value().Found("a").Value().String().Value().Content())
 }
 ```
+
+## How to Contribute
+
+Fork this repository, make changes, send us a pull request. We will review your changes and apply them to the `main` branch shortly, provided they don't violate our quality standards. To avoid frustration, before sending us your pull request please run the tests:
+
+```bash
+$ go test -v ./...
+```
+
+You will need Go 1.20+.
