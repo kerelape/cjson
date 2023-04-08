@@ -24,6 +24,7 @@ package cjson_test
 
 import (
 	"bytes"
+	"reflect"
 	"testing"
 
 	cjson "github.com/kerelape/cjson/pkg"
@@ -62,4 +63,15 @@ func TestObject_MarshalJSON(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestObject_Keys(t *testing.T) {
+	t.Run("returns correct keys", func(t *testing.T) {
+		subject := cjson.NewObject().With("a", cjson.NewNull()).With("b", cjson.NewNull())
+		want := []string{"a", "b"}
+		actual := subject.Keys()
+		if !reflect.DeepEqual(actual, want) {
+			t.Errorf("Expected %v, got %v", want, actual)
+		}
+	})
 }
