@@ -72,6 +72,9 @@ type ObjectBranch interface {
 	Value
 	With(key string, value Node) ObjectBranch
 	Found(key string) option.Option[Node]
+
+	// Keys returns available keys in this branch.
+	Keys() []string
 }
 
 type ArrayBranch interface {

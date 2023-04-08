@@ -93,6 +93,14 @@ func (o Object) Found(key string) option.Option[Node] {
 	return option.None[Node]()
 }
 
+func (o Object) Keys() []string {
+	keys := make([]string, 0, len(o.content))
+	for _, entry := range o.content {
+		keys = append(keys, entry.key)
+	}
+	return keys
+}
+
 type objectEntry struct {
 	key   string
 	value Node
