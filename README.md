@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. 
 -->
-# Convinient JSON
+# Convenient JSON
 
-Convinient JSON (cjson) is an object-oriented JSON library for Go (golang).
+Convenient JSON (cjson) is an object-oriented JSON library for Go (golang).
 
 ## How to use this library
 
