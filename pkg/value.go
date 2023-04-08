@@ -56,6 +56,8 @@ type Node interface {
 // Leaf is a final value in a JSON tree.
 type Leaf[T any] interface {
 	Value
+
+	// Content returns the content of this Leaf.
 	Content() T
 }
 
@@ -68,18 +70,30 @@ type NumberLeaf Leaf[float64]
 // BooleanLeaf is a leaf that you can get a bool from.
 type BooleanLeaf Leaf[bool]
 
+// ObjectBranch is an object branch.
 type ObjectBranch interface {
 	Value
+
+	// With returns a new ObjectBranch with the value associated with the key.
 	With(key string, value Node) ObjectBranch
+
+	// Found returns an optional Node by the key.
 	Found(key string) option.Option[Node]
 
 	// Keys returns available keys in this branch.
 	Keys() []string
 }
 
+// ArrayBranch is an array branch.
 type ArrayBranch interface {
 	Value
+
+	// With returns a new ArrayBranch with the values appended to it.
 	With(values ...Node) ArrayBranch
+
+	// Size returns size of the array.
 	Size() int
+
+	// At returns an optional Node by the given index.
 	At(index int) option.Option[Node]
 }
