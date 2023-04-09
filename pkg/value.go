@@ -55,7 +55,7 @@ type Node interface {
 
 // Leaf is a final value in a JSON tree.
 type Leaf[T any] interface {
-	Value
+	Node
 
 	// Content returns the content of this Leaf.
 	Content() T
@@ -72,7 +72,7 @@ type BooleanLeaf Leaf[bool]
 
 // ObjectBranch is an object branch.
 type ObjectBranch interface {
-	Value
+	Node
 
 	// With returns a new ObjectBranch with the value associated with the key.
 	With(key string, value Node) ObjectBranch
@@ -86,7 +86,7 @@ type ObjectBranch interface {
 
 // ArrayBranch is an array branch.
 type ArrayBranch interface {
-	Value
+	Node
 
 	// With returns a new ArrayBranch with the values appended to it.
 	With(values ...Node) ArrayBranch
