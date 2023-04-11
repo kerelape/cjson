@@ -71,12 +71,11 @@ import (
 )
 
 func main() {
-    document := cjson.NewDocument()
-    err := json.Unmarshal([]byte(`{"a":"b"}`), document)
+    root, err := cjson.NewDocument([]byte(`{"a":"b"}`)).Parse()
     if err != nil {
         panic(err)
     }
-    println(document.Root().Object().Value().Found("a").Value().String().Value().Content())
+    println(root.Object().Value().Found("a").Value().String().Value().Content())
 }
 ```
 
