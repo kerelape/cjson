@@ -28,6 +28,7 @@ import (
 	"testing"
 
 	cjson "github.com/kerelape/cjson/pkg"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestArray_MarshalJSON(t *testing.T) {
@@ -63,5 +64,30 @@ func TestArray_MarshalJSON(t *testing.T) {
 		if !bytes.Equal(actual, want) {
 			t.Errorf("Expected %s, got %s", string(want), string(actual))
 		}
+	})
+}
+
+func TestArray_Without(t *testing.T) {
+	t.Run("no indexes", func(t *testing.T) {
+		assert.Equal(
+			t,
+			3,
+			cjson.NewArray(cjson.NewNull(), cjson.NewNull(), cjson.NewNull()).Without().Size(),
+			"Without should not change the array if no values passed",
+		)
+	})
+	t.Run("removes middle", func(t *testing.T) {
+		assert.Equal(
+			t,
+			"Hello, World!",
+			cjson.NewArray(cjson.NewNull(), cjson.NewNull(), cjson.NewString("Hello, World!")).
+				Without(1).
+				At(1).
+				Value().
+				String().
+				Value().
+				Content(),
+			"Expected Without to remove the middle object",
+		)
 	})
 }
