@@ -95,23 +95,16 @@ func (o Object) Found(key string) option.Option[Node] {
 
 func (o Object) Without(entries ...string) ObjectBranch {
 	if len(entries) == 0 {
-		content := make([]objectEntry, 0, len(o.content))
-		copy(content, o.content)
-		return Object{content}
+		return Object{o.content}
 	}
-	index := -1
 	key := entries[len(entries)-1]
-	for i, e := range o.content {
-		if e.key == key {
-			index = i
-			break
+	content := make([]objectEntry, 0, len(o.content))
+	for _, entry := range o.content {
+		if entry.key != key {
+			content = append(content, entry)
 		}
 	}
-	content := make([]objectEntry, 0, len(o.content))
-	content = append(content, o.content[:index]...)
-	content = append(content, o.content[index+1:]...)
-	result := Object{content}
-	return result.Without(entries[:len(entries)-1]...)
+	return Object{content}.Without(entries[:len(entries)-1]...)
 }
 
 func (o Object) Keys() []string {
