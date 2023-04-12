@@ -43,7 +43,7 @@ func TestNull_MarshalJSON(t *testing.T) {
 
 func TestNull_String(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if (cjson.Null{}).String().NotEmpty() {
+		if (cjson.Null{}).String().Present() {
 			t.Error("Expected Null to return an empty NumberValue")
 		}
 	})
@@ -51,7 +51,7 @@ func TestNull_String(t *testing.T) {
 
 func TestNull_Number(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if (cjson.Null{}).Number().NotEmpty() {
+		if (cjson.Null{}).Number().Present() {
 			t.Error("Expected Null to return an empty NumberValue")
 		}
 	})
@@ -59,7 +59,7 @@ func TestNull_Number(t *testing.T) {
 
 func TestNull_Boolean(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if (cjson.Null{}).Boolean().NotEmpty() {
+		if (cjson.Null{}).Boolean().Present() {
 			t.Error("Expected Null to return an empty BooleanValue")
 		}
 	})
@@ -67,7 +67,7 @@ func TestNull_Boolean(t *testing.T) {
 
 func TestNull_Object(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if (cjson.Null{}).Object().NotEmpty() {
+		if (cjson.Null{}).Object().Present() {
 			t.Error("Expected Null to return an empty ObjectValue")
 		}
 	})
@@ -75,7 +75,7 @@ func TestNull_Object(t *testing.T) {
 
 func TestNull_Array(t *testing.T) {
 	t.Run("returns an empty array", func(t *testing.T) {
-		if (cjson.Null{}).Array().NotEmpty() {
+		if (cjson.Null{}).Array().Present() {
 			t.Error("Expected Null to return an empty ArrayValue")
 		}
 	})

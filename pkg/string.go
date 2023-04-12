@@ -47,21 +47,21 @@ func (s String) Content() string {
 }
 
 func (s String) String() option.Option[StringLeaf] {
-	return option.Some[StringLeaf](s)
+	return option.NewSome[StringLeaf](s)
 }
 
 func (s String) Number() option.Option[NumberLeaf] {
-	return option.None[NumberLeaf]()
+	return option.NewNoneReason[NumberLeaf](ErrWrongType)
 }
 
 func (s String) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNoneReason[BooleanLeaf](ErrWrongType)
 }
 
 func (s String) Object() option.Option[ObjectBranch] {
-	return option.None[ObjectBranch]()
+	return option.NewNoneReason[ObjectBranch](ErrWrongType)
 }
 
 func (s String) Array() option.Option[ArrayBranch] {
-	return option.None[ArrayBranch]()
+	return option.NewNoneReason[ArrayBranch](ErrWrongType)
 }

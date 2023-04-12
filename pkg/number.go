@@ -47,21 +47,21 @@ func (n Number) Content() float64 {
 }
 
 func (n Number) String() option.Option[StringLeaf] {
-	return option.None[StringLeaf]()
+	return option.NewNoneReason[StringLeaf](ErrWrongType)
 }
 
 func (n Number) Number() option.Option[NumberLeaf] {
-	return option.Some[NumberLeaf](n)
+	return option.NewSome[NumberLeaf](n)
 }
 
 func (n Number) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNoneReason[BooleanLeaf](ErrWrongType)
 }
 
 func (n Number) Object() option.Option[ObjectBranch] {
-	return option.None[ObjectBranch]()
+	return option.NewNoneReason[ObjectBranch](ErrWrongType)
 }
 
 func (n Number) Array() option.Option[ArrayBranch] {
-	return option.None[ArrayBranch]()
+	return option.NewNoneReason[ArrayBranch](ErrWrongType)
 }
