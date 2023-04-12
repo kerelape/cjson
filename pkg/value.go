@@ -83,8 +83,8 @@ type ObjectBranch interface {
 	// Found returns an optional Node by the key.
 	Found(key string) option.Option[Node]
 
-	// Without returns a new ObjectBranch without the entry.
-	Without(key string) ObjectBranch
+	// Without returns a new ObjectBranch without the entries.
+	Without(entries ...string) ObjectBranch
 
 	// Keys returns available keys in this branch.
 	Keys() []string
@@ -103,6 +103,6 @@ type ArrayBranch interface {
 	// At returns an optional Node by the given index.
 	At(index int) option.Option[Node]
 
-	// Without returns a new ArrayBranch without the node at index.
-	Without(index int) ArrayBranch
+	// Without returns a new ArrayBranch without the nodes at provided indexes.
+	Without(indexes ...int) ArrayBranch
 }
