@@ -21,21 +21,21 @@ func (i Invalid) MarshalJSON() ([]byte, error) {
 }
 
 func (i Invalid) String() option.Option[StringLeaf] {
-	return option.None[StringLeaf]()
+	return option.NewNoneReason[StringLeaf](ErrInvalidJSON)
 }
 
 func (i Invalid) Number() option.Option[NumberLeaf] {
-	return option.None[NumberLeaf]()
+	return option.NewNoneReason[NumberLeaf](ErrInvalidJSON)
 }
 
 func (i Invalid) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNoneReason[BooleanLeaf](ErrInvalidJSON)
 }
 
 func (i Invalid) Object() option.Option[ObjectBranch] {
-	return option.None[ObjectBranch]()
+	return option.NewNoneReason[ObjectBranch](ErrInvalidJSON)
 }
 
 func (i Invalid) Array() option.Option[ArrayBranch] {
-	return option.None[ArrayBranch]()
+	return option.NewNoneReason[ArrayBranch](ErrInvalidJSON)
 }

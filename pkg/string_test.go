@@ -70,7 +70,7 @@ func TestString_String(t *testing.T) {
 		want := "abcdef"
 		subject := cjson.NewString(want)
 		actual := subject.String()
-		if actual.Empty() {
+		if !actual.Present() {
 			t.Error("Expected to return non-empty value")
 		}
 		if actual.Value().Content() != want {
@@ -81,7 +81,7 @@ func TestString_String(t *testing.T) {
 
 func TestString_Number(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if cjson.NewString("").Number().NotEmpty() {
+		if cjson.NewString("").Number().Present() {
 			t.Error("Expected String to return an empty NumberValue")
 		}
 	})
@@ -89,7 +89,7 @@ func TestString_Number(t *testing.T) {
 
 func TestString_Boolean(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if cjson.NewString("").Boolean().NotEmpty() {
+		if cjson.NewString("").Boolean().Present() {
 			t.Error("Expected String to return an empty BooleanValue")
 		}
 	})
@@ -97,7 +97,7 @@ func TestString_Boolean(t *testing.T) {
 
 func TestString_Object(t *testing.T) {
 	t.Run("returns an empty object", func(t *testing.T) {
-		if cjson.NewString("").Object().NotEmpty() {
+		if cjson.NewString("").Object().Present() {
 			t.Error("Expected String to return an empty ObjectValue")
 		}
 	})
@@ -105,7 +105,7 @@ func TestString_Object(t *testing.T) {
 
 func TestString_Array(t *testing.T) {
 	t.Run("returns an empty array", func(t *testing.T) {
-		if cjson.NewString("").Array().NotEmpty() {
+		if cjson.NewString("").Array().Present() {
 			t.Error("Expected String to return an empty ArrayValue")
 		}
 	})

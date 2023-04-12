@@ -53,23 +53,23 @@ func (o Object) MarshalJSON() ([]byte, error) {
 }
 
 func (o Object) String() option.Option[StringLeaf] {
-	return option.None[StringLeaf]()
+	return option.NewNoneReason[StringLeaf](ErrWrongType)
 }
 
 func (o Object) Number() option.Option[NumberLeaf] {
-	return option.None[NumberLeaf]()
+	return option.NewNoneReason[NumberLeaf](ErrWrongType)
 }
 
 func (o Object) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNoneReason[BooleanLeaf](ErrWrongType)
 }
 
 func (o Object) Object() option.Option[ObjectBranch] {
-	return option.Some[ObjectBranch](o)
+	return option.NewSome[ObjectBranch](o)
 }
 
 func (o Object) Array() option.Option[ArrayBranch] {
-	return option.None[ArrayBranch]()
+	return option.NewNoneReason[ArrayBranch](ErrWrongType)
 }
 
 func (o Object) With(key string, value Node) ObjectBranch {
@@ -87,10 +87,10 @@ func (o Object) With(key string, value Node) ObjectBranch {
 func (o Object) Found(key string) option.Option[Node] {
 	for _, entry := range o.content {
 		if entry.key == key {
-			return option.Some(entry.value)
+			return option.NewSome(entry.value)
 		}
 	}
-	return option.None[Node]()
+	return option.NewNone[Node]()
 }
 
 func (o Object) Keys() []string {

@@ -24,9 +24,12 @@ package cjson
 
 import (
 	"encoding/json"
+	"errors"
 
 	option "github.com/kerelape/option/pkg"
 )
+
+var ErrWrongType = errors.New("wrong type")
 
 // Value is a JSON value.
 type Value interface {

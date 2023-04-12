@@ -23,11 +23,14 @@
 package cjson
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
 	option "github.com/kerelape/option/pkg"
 )
+
+var ErrOutOfBounds = errors.New("out of bounds")
 
 // Array is a JSON array.
 type Array struct {
@@ -59,23 +62,23 @@ func (a Array) Content() []Node {
 }
 
 func (a Array) String() option.Option[StringLeaf] {
-	return option.None[StringLeaf]()
+	return option.NewNoneReason[StringLeaf](ErrWrongType)
 }
 
 func (a Array) Number() option.Option[NumberLeaf] {
-	return option.None[NumberLeaf]()
+	return option.NewNoneReason[NumberLeaf](ErrWrongType)
 }
 
 func (a Array) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNoneReason[BooleanLeaf](ErrWrongType)
 }
 
 func (a Array) Object() option.Option[ObjectBranch] {
-	return option.None[ObjectBranch]()
+	return option.NewNoneReason[ObjectBranch](ErrWrongType)
 }
 
 func (a Array) Array() option.Option[ArrayBranch] {
-	return option.Some[ArrayBranch](a)
+	return option.NewSome[ArrayBranch](a)
 }
 
 func (a Array) With(values ...Node) ArrayBranch {
@@ -88,7 +91,7 @@ func (a Array) Size() int {
 
 func (a Array) At(index int) option.Option[Node] {
 	if index > (a.Size()-1) || index < 0 {
-		return option.None[Node]()
+		return option.NewNoneReason[Node](ErrOutOfBounds)
 	}
-	return option.Some(a.content[index])
+	return option.NewSome(a.content[index])
 }

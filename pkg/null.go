@@ -38,21 +38,21 @@ func (n Null) MarshalJSON() ([]byte, error) {
 }
 
 func (n Null) String() option.Option[StringLeaf] {
-	return option.None[StringLeaf]()
+	return option.NewNone[StringLeaf]()
 }
 
 func (n Null) Number() option.Option[NumberLeaf] {
-	return option.None[NumberLeaf]()
+	return option.NewNone[NumberLeaf]()
 }
 
 func (n Null) Boolean() option.Option[BooleanLeaf] {
-	return option.None[BooleanLeaf]()
+	return option.NewNone[BooleanLeaf]()
 }
 
 func (n Null) Object() option.Option[ObjectBranch] {
-	return option.None[ObjectBranch]()
+	return option.NewNone[ObjectBranch]()
 }
 
 func (n Null) Array() option.Option[ArrayBranch] {
-	return option.None[ArrayBranch]()
+	return option.NewNone[ArrayBranch]()
 }
