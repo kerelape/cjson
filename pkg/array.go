@@ -95,3 +95,15 @@ func (a Array) At(index int) option.Option[Node] {
 	}
 	return option.NewSome(a.content[index])
 }
+
+func (a Array) Without(indexes ...int) ArrayBranch {
+	if len(indexes) == 0 {
+		return Array{a.content}
+	}
+	content := make([]Node, 0, len(a.content))
+	index := indexes[len(indexes)-1]
+	content = append(content, a.content[:index]...)
+	content = append(content, a.content[index+1:]...)
+	result := Array{content}
+	return result.Without(indexes[:len(indexes)-1]...)
+}

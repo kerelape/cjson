@@ -28,6 +28,7 @@ import (
 	"testing"
 
 	cjson "github.com/kerelape/cjson/pkg"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestObject_MarshalJSON(t *testing.T) {
@@ -73,5 +74,30 @@ func TestObject_Keys(t *testing.T) {
 		if !reflect.DeepEqual(actual, want) {
 			t.Errorf("Expected %v, got %v", want, actual)
 		}
+	})
+}
+
+func TestObject_Without(t *testing.T) {
+	t.Run("without any argument", func(t *testing.T) {
+		assert.True(
+			t,
+			cjson.NewObject().
+				With("test", cjson.NewNull()).
+				Without().
+				Found("test").
+				Present(),
+			"Expected Without to keep all entries.",
+		)
+	})
+	t.Run("with non-existing entry", func(t *testing.T) {
+		assert.True(
+			t,
+			cjson.NewObject().
+				With("key", cjson.NewNull()).
+				Without("fake").
+				Found("key").
+				Present(),
+			"Expected Without to keep an entry that was not meant to be removed.",
+		)
 	})
 }

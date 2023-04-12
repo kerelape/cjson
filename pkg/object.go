@@ -93,6 +93,20 @@ func (o Object) Found(key string) option.Option[Node] {
 	return option.NewNone[Node]()
 }
 
+func (o Object) Without(entries ...string) ObjectBranch {
+	if len(entries) == 0 {
+		return Object{o.content}
+	}
+	key := entries[len(entries)-1]
+	content := make([]objectEntry, 0, len(o.content))
+	for _, entry := range o.content {
+		if entry.key != key {
+			content = append(content, entry)
+		}
+	}
+	return Object{content}.Without(entries[:len(entries)-1]...)
+}
+
 func (o Object) Keys() []string {
 	keys := make([]string, 0, len(o.content))
 	for _, entry := range o.content {
