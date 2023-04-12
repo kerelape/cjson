@@ -98,7 +98,7 @@ func (a Array) At(index int) option.Option[Node] {
 
 func (a Array) Without(indexes ...int) ArrayBranch {
 	if len(indexes) == 0 {
-		return a.With()
+		return Array{a.content}
 	}
 	content := make([]Node, 0, len(a.content))
 	index := indexes[len(indexes)-1]
