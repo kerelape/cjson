@@ -97,10 +97,10 @@ func (o Object) Without(entries ...string) ObjectBranch {
 	if len(entries) == 0 {
 		return Object{o.content}
 	}
-	key := entries[len(entries)-1]
+	undesired := entries[len(entries)-1]
 	content := make([]objectEntry, 0, len(o.content))
 	for _, entry := range o.content {
-		if entry.key != key {
+		if entry.key != undesired {
 			content = append(content, entry)
 		}
 	}
